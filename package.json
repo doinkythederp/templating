@@ -1,0 +1,22 @@
+{
+  "name": "@doinkythederp/templating",
+  "version": "1.1.2",
+  "description": "A module allowing you to use \"template\" files to automatically generate strings",
+  "main": "module/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "html",
+    "template",
+    "server"
+  ],
+  "author": "doinkythederp",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
