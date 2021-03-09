@@ -2,6 +2,7 @@
   "name": "@doinkythederp/templating",
   "version": "1.1.2",
   "description": "A module allowing you to use \"template\" files to automatically generate strings",
+  "repository": "https://github.com/doinkythederp/templating",
   "main": "module/index.js",
   "directories": {
     "test": "test"

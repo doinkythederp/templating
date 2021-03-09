@@ -22,14 +22,19 @@ class renderer {
     this._options = options;
   }
 
-  render(request, variables = {}, options) {
+  render(request, variables, options) {
     // Create a new VM
     const vm = require('vm');
-    vm.createContext(variables);
     // Allow custom options that don't save
     // Make sure we have valid options
     if (typeof options == 'undefined') options = new Object();
     if (typeof options !== 'object') throw new TypeError(`The options provided to the renderer must be an object.`);
+    if (typeof options.path !== 'string' && options.path) throw new TypeError(`The default path provided to the renderer must be a string.`);
+    if (typeof options.extension !== 'string' && options.extension) throw new TypeError(`The default extension provided to the renderer must be a string.`);
+    if (options.custom instanceof RegExp && options.extension) throw new TypeError(`The custom RegExp provided to the renderer must be a RegExp.`);
+    if (!variables || typeof variables !== 'object') variables = {};
+    vm.createContext(variables);
+
     // Fallbacks
     options = {
       path: options.path || this._options.path,
@@ -61,10 +66,9 @@ class renderer {
     return file;
   }
 
-  renderString(input, variables = {}, options) {
+  renderString(input, variables, options) {
     // Create a new VM
     const vm = require('vm');
-    vm.createContext(variables);
     // Allow custom options that don't save
     // Make sure we have valid options
     if (typeof options == 'undefined') options = new Object();
@@ -72,6 +76,8 @@ class renderer {
     if (typeof options.path !== 'string' && options.path) throw new TypeError(`The default path provided to the renderer must be a string.`);
     if (typeof options.extension !== 'string' && options.extension) throw new TypeError(`The default extension provided to the renderer must be a string.`);
     if (options.custom instanceof RegExp && options.extension) throw new TypeError(`The custom RegExp provided to the renderer must be a RegExp.`);
+    if (!variables || typeof variables !== 'object') variables = {};
+    vm.createContext(variables);
     // Fallbacks
     options = {
       path: options.path || this._options.path,
@@ -121,7 +127,7 @@ class renderer {
     input = input.split('/');
     input.pop();
 
-    return input.join('/');    
+    return input.join('/');
   }
 
   options() {

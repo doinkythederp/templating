@@ -1,3 +1,5 @@
+| [Github Repo](https://github.com/doinkythederp/templating) |
+|------------------------------------------------------------|
 # doinkythederp's JS Templating Tool
 A templating tool allows you to create "templates" that generate an output. This one in particular is based off of Javascript's template literal system, and runs Node.js code. Snippets of code, called expressions, are run by the server and used to edit the template. Expressions are marked by a start and stop marker.
 
@@ -7,20 +9,14 @@ Installing is as simple as running the following npm command:
 `npm i @doinkythederp/templating`
 
 ## Examples
-Using the module to serve rendered HTML files using an express app:
+Using the module to generate an error message from a template:
 ```javascript
 const templateParser = require('@doinkythederp/templating');
-// You'd need to put an actual file in the require.resolve() below - it doesn't matter which.
-const path = templateParser.path(require.resolve('./html/index.html'));
-const htmlParser = new templateParser({ path, extension: '.html' });
+const messageParser = new templateParser({ path: __dirname + '/json/', extension: 'json' });
 
-// Keep track of visits to the homepage
-var visits = 0;
-
-// Our webpage
-app.get('/', (request, response) => {
-  ++visits;
-  response.status(200).send(htmlParser.render('index', { visits }));
+myEventListener.on('error', (error, code) => {
+  const message = messageParser.render('error', { code, error, timestamp: Date.now()});
+  console.log(message);
 });
 ```
 An example of a template file, using the default expression markers `#≤` and `≥`:
@@ -61,7 +57,7 @@ ___
 Allows you to change the options that were set on initialization
 * `options`: The updated `templateOptions` you would like to use
 ```javascript
-myTemplateParser.setOptions({ expressions: { start: '${', end: '}' } });
+myTemplateParser.setOptions({ extension: 'json'});
 console.log(`Settings changed.`)
 ```
 ___
@@ -154,7 +150,7 @@ You can edit this RegExp as you please, although expect errors if it's not corre
 * 1.1.0 - Lots more features
 * 1.1.1 - Some renderString bugs fixed
 * 1.1.2 - More bug fixes
-* 1.1.3 - Version History added, Github Repo added, License addded and some errors fixed
+* 1.1.3 - Version History added, Github Repo added, License added and some errors fixed
 
-| [Back to Top](#top) |
-|---------------------|
+| [Back to Top](#top) | [Github Repo](https://github.com/doinkythederp/templating) |
+|---------------------|------------------------------------------------------------|
