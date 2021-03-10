@@ -1,5 +1,5 @@
-| [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
-|------------------------------------------------------------|
+##### | [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
+
 # doinkythederp's JS Templating Tool
 A templating tool allows you to create "templates" that generate an output. This one in particular is based off of Javascript's template literal system, and runs Node.js code. Snippets of code, called expressions, are run by the server and used to edit the template. Expressions are marked by a start and stop marker.
 
@@ -205,5 +205,5 @@ The base RegExp is formatted in the following way:
 * 1.1.3 - Version History added, Github Repo added, License added and some errors fixed
 * 1.2.0 - Added support for express's `res.render`.
 
-| [Back to Top](#top) | [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
-|---------------------|------------------------------------------------------------|
+##### | [Back to Top](#top) | [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
+
