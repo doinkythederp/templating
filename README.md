@@ -203,6 +203,7 @@ The base RegExp is formatted in the following way:
 * 1.1.1 - Some renderString bugs fixed
 * 1.1.2 - More bug fixes
 * 1.1.3 - Version History added, Github Repo added, License added and some errors fixed
+* 1.2.0 - Added support for express's `res.render`.
 
 | [Back to Top](#top) | [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
 |---------------------|------------------------------------------------------------|
