@@ -10,14 +10,21 @@ const app = express();
 // Keep track of visits
 var visits = 0;
 
-// Our webpage
+// Register engine
+app.engine('html', templateParser.__express);
+app.set('views', __dirname + '/html/') // set the templates directory
+app.set('view engine', 'html') // Use the template engine
+
+// Vanilla
 app.get('/', (request, response) => {
   ++visits;
   response.status(200).send(htmlParser.render('index', { visits }));
 })
 
-app.get((error, request, response, next) => {
-  response.status(500).send(htmlParser.render('500', { error }));
+// res.render
+app.get('/render', (request, response) => {
+  ++visits;
+  response.status(200).render('index', {visits} );
 })
 
 // Error handling
@@ -26,6 +33,7 @@ app.use((request, response) => {
 })
 
 app.use((error, request, response, next) => {
+  console.error(error);
   response.status(500).send(htmlParser.render('500', { error }));
 })
 

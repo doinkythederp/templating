@@ -1,5 +1,8 @@
 const fs = require('fs');
 
+
+
+
 class renderer {
   constructor(options) {
     // Make sure we have valid options
@@ -119,6 +122,34 @@ class renderer {
     if (!options.path.endsWith('/')) options.extension = '.' + options.extension;
 
     this._options = options;
+  }
+
+  static __express(path, options, finish) { // Using with res.render
+    // Create a new VM
+    const vm = require('vm');
+
+    options = options || {};
+
+    vm.createContext(options); // Make the provided variables into a context
+
+    // Make sure the file exists
+    if (!fs.existsSync(path)) return finish(new Error(`The requested template file ${path} doesn't exist.`));
+
+    // Get the contents of the file
+    var file = fs.readFileSync(path, 'utf8');
+
+
+    var match = options._locals.regexp || /(?<!\\)\#\≤([\s\S]+?)(?<!\\)\≥/gm; // The regex
+
+    var matches = [...file.matchAll(match)]; // Look for expressions
+
+    // Run the code
+    matches.forEach(([match, code]) => {
+      file = file.replace(match, vm.runInContext(code, options, { filename: "templateEngine" }));
+    });
+
+    // Return the final document
+    return finish(null, file);
   }
 
   static path(input) {
