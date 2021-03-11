@@ -53,7 +53,7 @@ __express | Static Method
 setOptions | Method
 render | Method
 renderString | Method
-options | Method
+options | Property
 constructor | Constructor
 ___
 #### `.path(require.resolve( requirePath ))` **Static Method**
@@ -117,8 +117,8 @@ Instead of rendering a template *file*, this allows you to render a string. Very
 * `options`: The temporary `templateOptions` options to use - defaults to the ones set on initialization or with the `.setOptions` method
 
 ___
-#### `.options()` **Method**
-Returns a `templateOptions` object holding a copy of the current options
+#### `.options` **Property**
+Gives a `templateOptions` object holding a copy of the current options.
 You can't change the options through the object it returns.
 ___
 #### `new templateParser( options )` **Constructor**

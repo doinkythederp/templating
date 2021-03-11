@@ -161,7 +161,7 @@ class renderer {
     return input.join('/');
   }
 
-  options() {
+  get options() {
     return Object.assign(new Object(), this._options);
   }
 
