@@ -1,6 +1,6 @@
 {
   "name": "@doinkythederp/templating",
-  "version": "1.3.0-0",
+  "version": "1.3.0-1",
   "description": "A module allowing you to use \"template\" files to automatically generate strings",
   "repository": "https://github.com/doinkythederp/templating",
   "main": "module/index.js",
