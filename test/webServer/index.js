@@ -39,6 +39,3 @@ app.use((error, request, response, next) => {
 
 // Start the server
 app.listen(3000, () => console.info(`Example app running on https://localhost:3000`));
-
-// String render
-console.log(htmlParser.renderString('test #≤ \'ok\' ≥, variable is #≤ variable ≥', {variable: {message: 'example error', code: 000}}));

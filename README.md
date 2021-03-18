@@ -136,7 +136,7 @@ Used to configure the properties of a `templateParser`
 |-----------|------|----------|---------|-------------|
 path | String | Yes | `/` | The base path when accessing a template file
 extension | String | Yes | `html` | The file extension to use, can be an empty string to skip
-handleUndefined | Boolean | Yes
+handleUndefined | Boolean | Yes 
 custom | RegExp | Yes | `/(?<!\\)\#\≤([\s\S]+?)\≥/gm` | Allows you to set your own RegExp for locating varibles
 ###### **Warning**: Only change the RegExp if you fully know what you're doing!
 ```js
@@ -204,6 +204,7 @@ The base RegExp is formatted in the following way:
 * 1.1.2 - More bug fixes
 * 1.1.3 - Version History added, Github Repo added, License added and some errors fixed
 * 1.2.0 - Added support for express's `res.render`.
+* 1.3.0 - Custom regex now more reliable, and options
 
 ##### | [Back to Top](#top) | [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
 

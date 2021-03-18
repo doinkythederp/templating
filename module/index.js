@@ -14,7 +14,8 @@ class renderer {
     options = {
       path: options.path || '',
       extension: options.extension || '.html',
-      custom: options.custom
+      custom: options.custom,
+      handleUndefined: options.handleUndefined || 'true'
     }
 
     // Make sure the path and extension are valid
@@ -42,7 +43,8 @@ class renderer {
     options = {
       path: options.path || this._options.path,
       extension: options.extension || this._options.extension,
-      custom: options.custom || this.options.custom
+      custom: options.custom || this._options.custom,
+      handleUndefined: options.handleUndefined || this._options.handleUndefined
     }
 
     // Here's our file to grab
@@ -62,7 +64,15 @@ class renderer {
 
     // Run the code
     matches.forEach(([match, code]) => {
-      file = file.replace(match, vm.runInContext(code, variables, { filename: "templateEngine" }));
+      let replace = vm.runInContext(code, variables, { filename: "templateEngine" });
+
+      // Sometimes having "undefined" or "null" in
+      // your output isn't the best, so we have this.
+      if ((options.handleUndefined === true || options.handleUndefined === 'undefined') && replace === undefined) replace = '';
+
+      if ((options.handleUndefined === true || options.handleUndefined === 'null') && replace === null) replace = '';
+
+      file = file.replace(match, replace);
     });
 
     // Return the final document
@@ -85,7 +95,8 @@ class renderer {
     options = {
       path: options.path || this._options.path,
       extension: options.extension || this._options.extension,
-      custom: options.custom || this._options.custom
+      custom: options.custom || this._options.custom,
+      handleUndefined: options.handleUndefined || this._options.handleUndefined
     }
 
     var matches;
@@ -94,11 +105,19 @@ class renderer {
 
     var match = options.custom || /(?<!\\)\#\≤([\s\S]+?)(?<!\\)\≥/gm;
 
-    eval(`matches = [...new String(input).matchAll(match)]`);
+    matches = [...new String(input).matchAll(match)]
 
     // Run the code
     matches.forEach(([match, code]) => {
-      input = input.replace(match, vm.runInContext(code, variables, { filename: "templateEngine" }));
+      let replace = vm.runInContext(code, variables, { filename: "templateEngine" });
+
+      // Sometimes having "undefined" or "null" in
+      // your output isn't the best, so we have this.
+      if ((options.handleUndefined === true || options.handleUndefined === 'undefined') && replace === undefined) replace = '';
+
+      if ((options.handleUndefined === true || options.handleUndefined === 'null') && replace === null) replace = '';
+
+      input = input.replace(match, replace);
     });
 
     // Return the final document
