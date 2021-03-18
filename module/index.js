@@ -15,7 +15,7 @@ class renderer {
       path: options.path || '',
       extension: options.extension || '.html',
       custom: options.custom,
-      handleUndefined: options.handleUndefined || 'true'
+      handleUndefined: options.handleUndefined || "null"
     }
 
     // Make sure the path and extension are valid
@@ -183,6 +183,8 @@ class renderer {
   get options() {
     return Object.assign(new Object(), this._options);
   }
+
+  _options = {};
 
 }
 

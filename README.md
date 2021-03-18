@@ -136,7 +136,7 @@ Used to configure the properties of a `templateParser`
 |-----------|------|----------|---------|-------------|
 path | String | Yes | `/` | The base path when accessing a template file
 extension | String | Yes | `html` | The file extension to use, can be an empty string to skip
-handleUndefined | Boolean | Yes 
+handleUndefined | [undefinedOptions](#undefinedoptions-boolean-or-string) | Yes | `"undefined"` | Handles what to render on `undefined` or `null`.
 custom | RegExp | Yes | `/(?<!\\)\#\≤([\s\S]+?)\≥/gm` | Allows you to set your own RegExp for locating varibles
 ###### **Warning**: Only change the RegExp if you fully know what you're doing!
 ```js
@@ -147,6 +147,16 @@ const options = {
 }
 const myTemplateParser = new templateParser(options);
 ```
+___
+### `undefinedOptions` **Boolean** or **String**
+A boolean or string that controls what will appear when there is no output from an expression. It's reccomended *not* to set this to false, as the words "null" and "undefined" may appear in the final result.
+
+| Possible Value | Explaination |
+|----------------|--------------|
+| `true` | `undefined` and `null` will be replaced with an empty string. |
+| `"undefined"` | `undefined` will be replaced with an empty string. |
+| `"null"` | `null` will be replaced with an empty string. |
+| `false` | All outputs will use their built-in `toString` method. |
 ___
 ### Using with Express
 Express provides a `app.render` and `res.render` function, allowing you to render files without too much of a hassle.
@@ -204,7 +214,7 @@ The base RegExp is formatted in the following way:
 * 1.1.2 - More bug fixes
 * 1.1.3 - Version History added, Github Repo added, License added and some errors fixed
 * 1.2.0 - Added support for express's `res.render`.
-* 1.3.0 - Custom regex now more reliable, and options
+* 1.3.0 - Custom regex now more reliable, and undefinedOptions fully implemented. `templateParser.options` is now a property and not a method.
 
 ##### | [Back to Top](#top) | [Github Repo](https://github.com/doinkythederp/templating) | [NPM](https://www.npmjs.com/package/@doinkythederp/templating) |
 
