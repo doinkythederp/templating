@@ -42,7 +42,7 @@ class renderer {
     options = {
       path: options.path || this._options.path,
       extension: options.extension || this._options.extension,
-      custom: options.custom
+      custom: options.custom || this.options.custom
     }
 
     // Here's our file to grab
@@ -85,7 +85,7 @@ class renderer {
     options = {
       path: options.path || this._options.path,
       extension: options.extension || this._options.extension,
-      custom: options.custom
+      custom: options.custom || this._options.custom
     }
 
     var matches;
