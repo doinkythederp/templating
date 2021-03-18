@@ -181,15 +181,15 @@ app.set('view engine', extension); // Automatically use this engine when no exte
 // Optional setup
 app.locals.regexp = /custom-regexp/gm
 ```
-##### An example using `res.render`
+##### An example using `res.render`:
 ```js
 app.get('/', (req, res) => {
-  app.status(200).render('index', { authUser: /* Somehow get the current user */ })
+  app.status(200).render('index', { myVariable: /* Somehow get a variable to send */ })
 })
 ```
 ___
-### Customizing the RegExp
-The base RegExp is formatted in the following way:
+### Customizing the RegEx
+The base RegEx is formatted in the following way:
 ```js
 / (?<!\\) \#\≤ ([\s\S]+?) (?<!\\) \≥ /gm
 /*   1      2      3         4     5   6  */
@@ -200,9 +200,20 @@ The base RegExp is formatted in the following way:
 3. First capture group - This is where the code looks to find what code to run. It is set to allow anything in it.
 4. No leading backslash filter - Means that if you put a backslash here at the end, it won't see the end of the expression.
 5. The end of the expression - This marks the end of the expression
-6. Flags - `g` allows multiple expressions, `m` allows muli-line expressions
+6. Flags - `g` allows multiple expressions per render, `m` allows muli-line expressions
 
-###### You can edit this RegExp as you please, although expect errors if it's not correctly formatted.
+###### You can edit this RegEx as you please, although expect errors if it's not correctly formatted.
+```js
+/* Examples */
+
+/(?<!\\){([\s\S]+?)}/gm // Uses expression markers { and }
+
+/(?<!\\)\$\{([\s\S]+?)\}/gm // Uses expression markers ${ and }
+
+/(?<!\\){{([\s\S]+?)}}/gm // Uses expression markers {{ and }}
+
+/(?<!\\)\<\<([\s\S]+?)\>\>/gm // Uses expression markers << and >>
+```
 
 ## Version History
 
